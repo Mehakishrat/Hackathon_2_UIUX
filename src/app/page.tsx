@@ -19,7 +19,6 @@ export default function page() {
       <Header />
       <Rectangle />
       <ProductCards />
-      <Products />
       <Sell />
       {/* button div */}
       <div className="flex justify-center mt-4 items-center ">
