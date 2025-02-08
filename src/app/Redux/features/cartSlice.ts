@@ -1,6 +1,7 @@
 'use client'
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+// Example: Remove unused variables
 
 // Define the initial state using that type
 export const store = createSlice({
@@ -27,7 +28,7 @@ export const store = createSlice({
       )
       if (obj) {
         ++obj.qty
-        let newState = state.filter((val: any) => val.id !== obj.id)
+        const newState = state.filter((val: any) => val.id !== obj.id)
         state = [...newState, obj]
         return
       }
@@ -42,7 +43,7 @@ export const store = createSlice({
       )
       if (obj !== undefined) {
         --obj.qty
-        let newState = state.filter((val: any) => val.uuid !== obj.uuid)
+        const newState = state.filter((val: any) => val.uuid !== obj.uuid)
         state = [...newState, obj]
         return
       }

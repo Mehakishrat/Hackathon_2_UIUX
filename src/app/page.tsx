@@ -9,7 +9,6 @@ import Products from "./product/page"
 import Sell from "./product/sell"
 import { Button } from "@/components/ui/button";
 import Top3reveiw from "./components/top3reveiew";
-import ProductCards from "./allproducts/ProductCards";
 
 
 export default function page() {
@@ -18,7 +17,7 @@ export default function page() {
     <div>
       <Header />
       <Rectangle />
-      <ProductCards />
+      <Products />
       <Sell />
       {/* button div */}
       <div className="flex justify-center mt-4 items-center ">

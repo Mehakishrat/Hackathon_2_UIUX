@@ -1,22 +1,21 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { urlFor } from "@/sanity/lib/image";
-import { Divide, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { addition, remove, subraction } from "../Redux/features/cartSlice";
 import Link from "next/link";
-// import { addition, delItem, subraction } from "../Redux/features/cart";
+import { Minus, Plus } from "lucide-react";
+import { RootState } from "../Redux/store";
 
 const Cartpage = () => {
  
     const dispatch = useDispatch()
  
-  const cartArray  = useSelector((state:any) => state.cart);
-    
-  const handleremove = (id:any)=>{
+  const cartArray  = useSelector((state:RootState) => state.cart);
+  const handleremove = (id:string)=>{
+
     dispatch(remove(id))
   }
   
