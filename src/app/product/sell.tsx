@@ -157,7 +157,7 @@ export default function Products() {
           }[0...4]`
         );
         setProducts(fetchedProducts);
-      } catch (err: any) {
+      } catch (err: unknown) {
         setError("Failed to load products. Please try again later.");
         console.error("Error fetching products:", err);
       } finally {

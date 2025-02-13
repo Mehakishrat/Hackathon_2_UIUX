@@ -105,7 +105,7 @@ function Checkout() {
         phoneNumber: values.phoneNumber,
       });
 
-      const order = await client.create({
+      await client.create({
         _type: "orders",
         shippingForm: { _ref: shippingForm._id },
         products: cartArray.map((product) => ({
@@ -130,7 +130,7 @@ function Checkout() {
   }
 
   return (
-    <main className="mt-5 lg:mt-10">
+    <main className="mt-1 lg:mt-2">
       <BreadcrumbCollapsed />
       <div className=" flex flex-col md:flex-row space-y-5 sm:space-y-0 p-5 justify-center items-start lg:space-x-6">
         {cartArray.length <= 0 && (
@@ -141,16 +141,16 @@ function Checkout() {
         {cartArray.length >= 1 && (
           <div className="w-full lg:w-[600px] space-y-4 border rounded-[20px] pt-2">
             <h1 className="text-2xl font-bold px-5">Order Summary</h1>
-            {cartArray.map((data: any, index: any) => {
+            {cartArray.map((data: CartItem, index: number) => {
               return (
                 <div className="flex justify-between items-start px-5" key={index}>
                   <div className="flex items-start space-x-2">
                     <Image
                       src={data.image}
                       alt={data.name}
-                      width={200} // Increase width and height for better quality
-                      height={200}
-                      quality={90} // Set the quality to a high value
+                      width={900} // Increase width and height for better quality
+                      height={800}
+                      quality={100} // Set the quality to a high value
                       className="rounded-lg object-cover"
                     />
                     <h1 className="sm:font-bold text-sm md:text-xl mt-3">{data.name}</h1>

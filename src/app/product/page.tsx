@@ -144,7 +144,7 @@ export default function Top_sell() {
           }[0...4]`
         );
         setProducts(fetchedProducts);
-      } catch (err: any) {
+      } catch (err: unknown) {
         setError("Failed to load products. Please try again later.");
         console.error("Error fetching products:", err);
       } finally {
@@ -173,7 +173,7 @@ export default function Top_sell() {
 
   return (
     <div className="w-full h-full mt-10 max-w-screen-xl mx-auto">
-      <h1 className="text-[45px] font-extrabold md:text-4xl text-center mt-8">New Arrival</h1>
+      <h1 className="text-[38px] font-extrabold md:text-4xl text-center mt-8">NEW ARRIVAL</h1>
       <div className="relative mt-10 overflow-x-auto flex space-x-5 px-8">
         {products.map((data) => (
           <div key={data._id} className="flex-shrink-0">

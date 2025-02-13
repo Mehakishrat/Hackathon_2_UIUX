@@ -6,7 +6,7 @@ import { persistStore } from "redux-persist";
 
 
 function Providers({ children,}: Readonly<{children: React.ReactNode;}>) {
-  let persistore = persistStore(store)
+  const persistore = persistStore(store)
   return (
     <Provider store={store}>
       <PersistGate persistor={persistore}>

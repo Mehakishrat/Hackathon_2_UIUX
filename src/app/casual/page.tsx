@@ -1,32 +1,4 @@
-// import React from "react";
-// import Casual from "../components/3page";
 
-// import { AccordionDemo } from "../components/accordion";
-// import { SliderDemo } from "../components/slider";
-// import { CheckboxDemo } from "../components/checkbox";
-// import Size from "../components/size";
-// import { Dresstyle } from "../components/dressstyle";
-
-
-// export default function casual() {
-//     return (
-//         <main className="flex justify-center items-center p-9 space-x-6">
-//             {/* left */}
-//             <div className="w-[295px] h-[1250px] border rounded-[16px]">
-//             <AccordionDemo/>
-//             <SliderDemo/>
-//             <CheckboxDemo/>
-//             <Size/>
-//             <Dresstyle/>
-
-
-//             </div>
-//             {/* right */}
-//             <div className="w-[900px] h-[1250px] ">
-//                 <Casual/>
-//             </div>
-//         </main>
-//     )}
 
 
 "use client";
@@ -40,6 +12,7 @@ import { BreadcrumbCollapsed } from "@/app/components/breadcrumb";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaStar } from "react-icons/fa";
 import { urlFor } from "@/sanity/lib/image";
+
 interface Product {
     _id: string;
     name: string;
@@ -50,7 +23,7 @@ interface Product {
         url: string;
       };
     };
-    discountPercent?: number;
+    discountPercent: number;
     new?: boolean;
     category: string;
     colors: string[];
@@ -104,7 +77,7 @@ export default function Casualpage(){
   }, []);
 
     // Adding key prop in star array
-    let star = [
+    const star = [
       <FaStar key={1} />,
       <FaStar key={2} />,
       <FaStar key={3} />,
@@ -148,27 +121,30 @@ export default function Casualpage(){
   }, [filters, products]);
    
      
-  const handleFilterChange = (type: keyof typeof filters, value: any) => {
+  const handleFilterChange = (
+    type: keyof typeof filters,
+    value: string | number | [number, number]
+) => {
     if (type === "colors" || type === "sizes") {
-      // Toggle logic for array filters
-      setFilters((prev) => ({
-        ...prev,
-        [type]: prev[type].includes(value)
-          ? prev[type].filter((item) => item !== value)
-          : [...prev[type], value],
-      }));
+        setFilters((prev) => ({
+            ...prev,
+            [type]: prev[type].includes(value as string)
+                ? prev[type].filter((item) => item !== value)
+                : [...prev[type], value as string],
+        }));
     } else if (type === "priceRange") {
-      setFilters((prev) => ({
-        ...prev,
-        priceRange: value,
-      }));
+        setFilters((prev) => ({
+            ...prev,
+            priceRange: value as [number, number],
+        }));
     } else {
-      setFilters((prev) => ({
-        ...prev,
-        [type]: value,
-      }));
+        setFilters((prev) => ({
+            ...prev,
+            [type]: value as string,
+        }));
     }
-  };
+};
+
 
 
     return(
@@ -279,7 +255,7 @@ export default function Casualpage(){
         </span>
       </h1>
       <div className="grid gap-3 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  md:p-0 place-items-center">
-        {filteredProducts.map((data:any, index) => (
+        {filteredProducts.map((data:Product, index) => (
           <div className=" mt-1" key={index}>
             <Link href={`/product/${data._id}`}>
               <div className="w-[160px] md:w-[240px] lg:w-[290px] h-[160px] md:h-[240px] lg:h-[290px] bg-[#F0EEED] rounded-[20px]">
@@ -287,8 +263,10 @@ export default function Casualpage(){
                  src={urlFor(data.image).url()}
                   alt={data.name}
                   className="w-full h-full rounded-[20px]"
-                  width={100}
-                  height={100}
+                  width={800}
+                  height={800}
+                  quality={100}
+                  priority
                 />
               </div>
             </Link>
